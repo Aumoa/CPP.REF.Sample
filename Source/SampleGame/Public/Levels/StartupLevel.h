@@ -1,0 +1,53 @@
+﻿// Copyright 2020-2021 Aumoa.lib. All right reserved.
+
+#pragma once
+
+#include "GameMinimal.h"
+#include "Level.h"
+
+#include "Framework/SpectatorPawn.h"
+
+class AMyTestActor;
+class AMyCharacter;
+class AStaticMeshActor;
+class ADirectionalLight;
+class APointLight;
+class ARotateLight;
+class ASpotLight;
+class Engine;
+
+class SAMPLEGAME_API GStartupLevel : public GLevel
+{
+public:
+	using Super = GLevel;
+	using This = GStartupLevel;
+
+public:
+	ADirectionalLight* light;
+	APointLight* rotateLight;
+
+	AStaticMeshActor* plane;
+	AStaticMeshActor* geosphere;
+	AStaticMeshActor* teapot;
+	AStaticMeshActor* cylinder;
+	AStaticMeshActor* cone;
+	AStaticMeshActor* icosahedron;
+
+	ASpectatorPawn* spectator;
+
+	AStaticMeshActor* sakura_miku;
+	AStaticMeshActor* hotaru;
+	AStaticMeshActor* babara;
+
+public:
+	GStartupLevel();
+	~GStartupLevel() override;
+
+	void LoadLevel() override;
+
+	APawn* GetPersistentActor() const;
+
+private:
+	void LoadAssets(Engine* engine);
+	void ImportStaticMesh(Engine* engine, TRefPtr<String> keyAndPath);
+};
